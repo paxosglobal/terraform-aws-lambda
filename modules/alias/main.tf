@@ -15,6 +15,7 @@ resource "aws_lambda_alias" "no_refresh" {
   count = var.create && !var.use_existing_alias && !var.refresh_alias ? 1 : 0
 
   name        = var.name
+  description = var.description
 
   function_name    = var.function_name
   function_version = var.function_version != "" ? var.function_version : "$LATEST"
@@ -28,7 +29,7 @@ resource "aws_lambda_alias" "no_refresh" {
   }
 
   lifecycle {
-    ignore_changes = [function_version]
+    ignore_changes = [function_version, description]
   }
 }
 
@@ -47,6 +48,10 @@ resource "aws_lambda_alias" "with_refresh" {
     content {
       additional_version_weights = var.routing_additional_version_weights
     }
+  }
+
+  lifecycle {
+    ignore_changes = [function_version, description]
   }
 }
 
