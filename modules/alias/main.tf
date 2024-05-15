@@ -49,10 +49,6 @@ resource "aws_lambda_alias" "with_refresh" {
       additional_version_weights = var.routing_additional_version_weights
     }
   }
-
-  lifecycle {
-    ignore_changes = [function_version, description]
-  }
 }
 
 resource "aws_lambda_function_event_invoke_config" "this" {
