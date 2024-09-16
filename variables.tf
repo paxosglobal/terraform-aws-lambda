@@ -598,7 +598,7 @@ variable "trusted_entities" {
 
 variable "trusted_entities_assume_role_source_arns" {
   description = "List of additional trusted entities for assuming Lambda Function role (trust relationship) with source ARNs"
-  type        = any
+  type        = list(string)
   default     = []
 }
 
