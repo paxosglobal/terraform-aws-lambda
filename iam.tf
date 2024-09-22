@@ -53,17 +53,17 @@ data "aws_iam_policy_document" "assume_role" {
       }
     }
 
-    condition {
-      test     = "ForAnyValue:StringLike"
-      variable = "aws:SourceArn"
-      values   = var.trusted_entities_assume_role_source_arns
-    }
-
-    condition {
-      test     = "ForAnyValue:StringEquals"
-      variable = "aws:SourceAccount"
-      values   = [data.aws_caller_identity.current.account_id]
-    }
+#     condition {
+#       test     = "ForAnyValue:StringLike"
+#       variable = "aws:SourceArn"
+#       values   = var.trusted_entities_assume_role_source_arns
+#     }
+#
+#     condition {
+#       test     = "ForAnyValue:StringEquals"
+#       variable = "aws:SourceAccount"
+#       values   = [data.aws_caller_identity.current.account_id]
+#     }
   }
 
   dynamic "statement" {
